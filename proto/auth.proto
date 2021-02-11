@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+package auth;
+
+message Creds {
+  optional string username = 1;
+  optional string password = 2;
+  optional string domain = 3;
+
+  enum CredsType {
+    DOMAIN = 0;
+    SMARTCARD = 1;
+  }
+  optional CredsType type = 4;
+}
+message request{
+  optional string req=1;
+}
+
+service AuthServer {
+  rpc getCredentials(request) returns (Creds){}
+}
